@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>TV-EYE Report</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;background:#0d1117;color:#e6edf3;margin:24px}
+h1{color:#58a6ff} h3{margin:4px 0}
+.badge{display:inline-block;padding:2px 10px;border-radius:12px;font-weight:600}
+.sev.critical{background:#b71c1c}.sev.high{background:#e53935}
+.sev.medium{background:#f9a825;color:#111}.sev.low{background:#039be5}
+.sev.info{background:#546e7a}
+table{border-collapse:collapse;width:100%}
+td,th{border:1px solid #30363d;padding:6px 10px;text-align:left}
+pre{background:#161b22;border:1px solid #30363d;padding:10px;border-radius:6px;
+overflow-x:auto;white-space:pre-wrap}
+.card{background:#161b22;border:1px solid #30363d;border-radius:8px;
+padding:14px;margin:12px 0}
+.footer{color:#8b949e;margin-top:30px;font-size:12px}
+</style></head><body>
+<h1>TV-EYE v1.0.0 - Security Assessment Report</h1>
+<p><b>Author:</b> Mr_TV &nbsp;|&nbsp; <b>Telegram:</b> @Mr_TV_ir &nbsp;|&nbsp;
+<b>GitHub:</b> <a href="https://github.com/TV-CENTER" style="color:#58a6ff">github.com/TV-CENTER</a></p>
+<p><b>Generated:</b> 2026-11-12 09:19 UTC</p>
+<p>Findings: <span class="badge sev critical">CRITICAL 1</span>
+<span class="badge sev high">HIGH 5</span>
+<span class="badge sev medium">MEDIUM 5</span>
+<span class="badge sev low">LOW 3</span>
+<span class="badge sev info">INFO 2</span></p>
+<p><b>Targets:</b> -</p>
+<h2>Findings table</h2>
+<table><tr><th>#</th><th>Severity</th><th>Title</th><th>Target</th><th>CWE</th></tr>
+
+        <tr>
+          <td>#16</td>
+          <td><span class="sev critical">CRITICAL</span></td>
+          <td>Valid credentials found: tveyeowner / labpass</td>
+          <td><code>http://127.0.0.1:65156/login</code></td>
+          <td>CWE-521</td>
+        </tr>
+        <tr>
+          <td>#5</td>
+          <td><span class="sev high">HIGH</span></td>
+          <td>Environment file exposed: /.env</td>
+          <td><code>http://127.0.0.1:65156/.env</code></td>
+          <td>CWE-200</td>
+        </tr>
+        <tr>
+          <td>#6</td>
+          <td><span class="sev high">HIGH</span></td>
+          <td>Possible secret in JavaScript: AWS Key</td>
+          <td><code>http://127.0.0.1:65156/app.js</code></td>
+          <td>CWE-798</td>
+        </tr>
+        <tr>
+          <td>#12</td>
+          <td><span class="sev high">HIGH</span></td>
+          <td>SQL injection (error-based) in parameter &#x27;id&#x27; (MySQL)</td>
+          <td><code>http://127.0.0.1:65156/item?id=%27</code></td>
+          <td>CWE-89</td>
+        </tr>
+        <tr>
+          <td>#13</td>
+          <td><span class="sev high">HIGH</span></td>
+          <td>File inclusion/traversal in parameter &#x27;page&#x27;</td>
+          <td><code>http://127.0.0.1:65156/view?page=..%2F..%2F..%2Fetc%2Fpasswd</code></td>
+          <td>CWE-98</td>
+        </tr>
+        <tr>
+          <td>#14</td>
+          <td><span class="sev high">HIGH</span></td>
+          <td>Template injection (SSTI) in parameter &#x27;name&#x27;</td>
+          <td><code>http://127.0.0.1:65156/template?name=%7B%7B7%2A7%7D%7D</code></td>
+          <td>CWE-1336</td>
+        </tr>
+        <tr>
+          <td>#7</td>
+          <td><span class="sev medium">MEDIUM</span></td>
+          <td>Possible secret in JavaScript: Generic secret</td>
+          <td><code>http://127.0.0.1:65156/app.js</code></td>
+          <td>CWE-798</td>
+        </tr>
+        <tr>
+          <td>#8</td>
+          <td><span class="sev medium">MEDIUM</span></td>
+          <td>Possible secret in JavaScript: Generic secret</td>
+          <td><code>http://127.0.0.1:65156/app.js</code></td>
+          <td>CWE-798</td>
+        </tr>
+        <tr>
+          <td>#9</td>
+          <td><span class="sev medium">MEDIUM</span></td>
+          <td>Possible secret in JavaScript: Generic secret</td>
+          <td><code>http://127.0.0.1:65156/app.js</code></td>
+          <td>CWE-798</td>
+        </tr>
+        <tr>
+          <td>#11</td>
+          <td><span class="sev medium">MEDIUM</span></td>
+          <td>Possible reflected XSS in parameter &#x27;q&#x27;</td>
+          <td><code>http://127.0.0.1:65156/search?q=%22%27%3E%3Ctveyealert%3Ealert%281%29%3C%2Ftveyealert%3E</code></td>
+          <td>CWE-79</td>
+        </tr>
+        <tr>
+          <td>#15</td>
+          <td><span class="sev medium">MEDIUM</span></td>
+          <td>GraphQL introspection enabled: http://127.0.0.1:65156/graphql</td>
+          <td><code>http://127.0.0.1:65156/graphql</code></td>
+          <td>CWE-200</td>
+        </tr>
+        <tr>
+          <td>#2</td>
+          <td><span class="sev low">LOW</span></td>
+          <td>Permissive CORS: Access-Control-Allow-Origin: *</td>
+          <td><code>http://127.0.0.1:65156</code></td>
+          <td>CWE-942</td>
+        </tr>
+        <tr>
+          <td>#3</td>
+          <td><span class="sev low">LOW</span></td>
+          <td>Insecure cookie flags (HttpOnly missing, Secure missing, SameSite missing)</td>
+          <td><code>http://127.0.0.1:65156</code></td>
+          <td>CWE-1004</td>
+        </tr>
+        <tr>
+          <td>#4</td>
+          <td><span class="sev low">LOW</span></td>
+          <td>Clickjacking possible (no frame protection)</td>
+          <td><code>http://127.0.0.1:65156</code></td>
+          <td>CWE-1021</td>
+        </tr>
+        <tr>
+          <td>#1</td>
+          <td><span class="sev info">INFO</span></td>
+          <td>Server version disclosed in Server header (1.0)</td>
+          <td><code>http://127.0.0.1:65156</code></td>
+          <td>CWE-200</td>
+        </tr>
+        <tr>
+          <td>#10</td>
+          <td><span class="sev info">INFO</span></td>
+          <td>Possible secret in JavaScript: Internal URL</td>
+          <td><code>http://127.0.0.1:65156/app.js</code></td>
+          <td>CWE-200</td>
+        </tr>
+</table>
+<h2>Details</h2>
+
+        <div class="card">
+          <h3>#16 [critical] Valid credentials found: tveyeowner / labpass</h3>
+          <p><b>Target:</b> <code>http://127.0.0.1:65156/login</code> &nbsp; <b>Module:</b> login_brute &nbsp; <b>CWE:</b> CWE-521</p>
+          <pre>Login succeeded (HTTP 200) with tveyeowner:labpass</pre>
+          <p><b>Tip:</b> Report per program policy; suggest MFA + lockout.</p>
+        </div>
+        <div class="card">
+          <h3>#5 [high] Environment file exposed: /.env</h3>
+          <p><b>Target:</b> <code>http://127.0.0.1:65156/.env</code> &nbsp; <b>Module:</b> sensitive_files &nbsp; <b>CWE:</b> CWE-200</p>
+          <pre>DB_HOST=127.0.0.1
+DB_USER=fakeuser
+DB_PASS=fakepassword123
+API_KEY=FAKE-not-a-real-key
+</pre>
+          <p><b>Tip:</b> Secrets in .env can leak API keys and DB passwords.</p>
+        </div>
+        <div class="card">
+          <h3>#6 [high] Possible secret in JavaScript: AWS Key</h3>
+          <p><b>Target:</b> <code>http://127.0.0.1:65156/app.js</code> &nbsp; <b>Module:</b> js_secrets &nbsp; <b>CWE:</b> CWE-798</p>
+          <pre>Match: AKIAIOSFODNN7EXAMPLE</pre>
+          <p><b>Tip:</b> Verify key is live and report with minimal redaction.</p>
+        </div>
+        <div class="card">
+          <h3>#12 [high] SQL injection (error-based) in parameter &#x27;id&#x27; (MySQL)</h3>
+          <p><b>Target:</b> <code>http://127.0.0.1:65156/item?id=%27</code> &nbsp; <b>Module:</b> sqli_scan &nbsp; <b>CWE:</b> CWE-89</p>
+          <pre>Database error triggered by 6 payload(s).
+Param: id
+Payloads: &#x27;; &quot;; 1 OR 1=1; 1&#x27; OR &#x27;1&#x27;=&#x27;1; 1) OR 1=1--; 1 UNION SELECT NULL--
+Response snippet: &lt;html&gt;&lt;body&gt;Warning: mysql error: you have an error in your SQL syntax near &#x27;&#x27;&#x27;&lt;/body&gt;&lt;/html&gt;</pre>
+          <p><b>Tip:</b> Confirm with sqlmap; determine DBMS and enumerate safely.</p>
+        </div>
+        <div class="card">
+          <h3>#13 [high] File inclusion/traversal in parameter &#x27;page&#x27;</h3>
+          <p><b>Target:</b> <code>http://127.0.0.1:65156/view?page=..%2F..%2F..%2Fetc%2Fpasswd</code> &nbsp; <b>Module:</b> lfi_scan &nbsp; <b>CWE:</b> CWE-98</p>
+          <pre>Signature-bearing responses for 6 payload(s).
+Payloads: ../../../etc/passwd; ....//....//....//etc/passwd; /etc/passwd; file:///etc/passwd; ../../../windows/win.ini; ..\..\..\windows\win.ini
+HTTP status: 200</pre>
+          <p><b>Tip:</b> Verify manually; try reading known files; check RFI/filter chains.</p>
+        </div>
+        <div class="card">
+          <h3>#14 [high] Template injection (SSTI) in parameter &#x27;name&#x27;</h3>
+          <p><b>Target:</b> <code>http://127.0.0.1:65156/template?name=%7B%7B7%2A7%7D%7D</code> &nbsp; <b>Module:</b> ssti_scan &nbsp; <b>CWE:</b> CWE-1336</p>
+          <pre>Math probe &#x27;{{7*7}}&#x27; evaluated to &#x27;49&#x27; in the response (HTTP 200). Baseline did not contain the result.</pre>
+          <p><b>Tip:</b> Confirm engine type (Jinja2/Twig/Freemarker...) and escalate carefully with proof-of-impact.</p>
+        </div>
+        <div class="card">
+          <h3>#7 [medium] Possible secret in JavaScript: Generic secret</h3>
+          <p><b>Target:</b> <code>http://127.0.0.1:65156/app.js</code> &nbsp; <b>Module:</b> js_secrets &nbsp; <b>CWE:</b> CWE-798</p>
+          <pre>Match: AKIAIOSFODNN7EXAMPLE</pre>
+          <p><b>Tip:</b> Verify key is live and report with minimal redaction.</p>
+        </div>
+        <div class="card">
+          <h3>#8 [medium] Possible secret in JavaScript: Generic secret</h3>
+          <p><b>Target:</b> <code>http://127.0.0.1:65156/app.js</code> &nbsp; <b>Module:</b> js_secrets &nbsp; <b>CWE:</b> CWE-798</p>
+          <pre>Match: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY</pre>
+          <p><b>Tip:</b> Verify key is live and report with minimal redaction.</p>
+        </div>
+        <div class="card">
+          <h3>#9 [medium] Possible secret in JavaScript: Generic secret</h3>
+          <p><b>Target:</b> <code>http://127.0.0.1:65156/app.js</code> &nbsp; <b>Module:</b> js_secrets &nbsp; <b>CWE:</b> CWE-798</p>
+          <pre>Match: SuperSecretLabValue123</pre>
+          <p><b>Tip:</b> Verify key is live and report with minimal redaction.</p>
+        </div>
+        <div class="card">
+          <h3>#11 [medium] Possible reflected XSS in parameter &#x27;q&#x27;</h3>
+          <p><b>Target:</b> <code>http://127.0.0.1:65156/search?q=%22%27%3E%3Ctveyealert%3Ealert%281%29%3C%2Ftveyealert%3E</code> &nbsp; <b>Module:</b> xss_scan &nbsp; <b>CWE:</b> CWE-79</p>
+          <pre>Canary payload(s) reflected raw into the response body.
+Parameter: q
+Reflected payload examples: &lt;tveyealert&gt;; &lt;svg/onload; &lt;/script; &lt;img src=x onerror; href=&quot;javascript:; &lt;details open ontoggle
+Response: HTTP 200, 75 bytes</pre>
+          <p><b>Tip:</b> Manually verify with a browser and prove execution; check encoding context (attribute/JS/HTML).</p>
+        </div>
+        <div class="card">
+          <h3>#15 [medium] GraphQL introspection enabled: http://127.0.0.1:65156/graphql</h3>
+          <p><b>Target:</b> <code>http://127.0.0.1:65156/graphql</code> &nbsp; <b>Module:</b> graphql_scan &nbsp; <b>CWE:</b> CWE-200</p>
+          <pre>Introspection query returned schema metadata:
+{&quot;data&quot;: {&quot;__schema&quot;: {&quot;queryType&quot;: {&quot;name&quot;: &quot;Query&quot;}}}}</pre>
+          <p><b>Tip:</b> Introspection discloses the full API surface; disable in prod.</p>
+        </div>
+        <div class="card">
+          <h3>#2 [low] Permissive CORS: Access-Control-Allow-Origin: *</h3>
+          <p><b>Target:</b> <code>http://127.0.0.1:65156</code> &nbsp; <b>Module:</b> security_headers &nbsp; <b>CWE:</b> CWE-942</p>
+          <pre>ACA-O: *</pre>
+          <p><b>Tip:</b> Wildcard CORS on credentialed APIs leaks data.</p>
+        </div>
+        <div class="card">
+          <h3>#3 [low] Insecure cookie flags (HttpOnly missing, Secure missing, SameSite missing)</h3>
+          <p><b>Target:</b> <code>http://127.0.0.1:65156</code> &nbsp; <b>Module:</b> security_headers &nbsp; <b>CWE:</b> CWE-1004</p>
+          <pre>Set-Cookie: labsession=abc123</pre>
+          <p><b>Tip:</b> Set HttpOnly; Secure; SameSite=Lax on session cookies.</p>
+        </div>
+        <div class="card">
+          <h3>#4 [low] Clickjacking possible (no frame protection)</h3>
+          <p><b>Target:</b> <code>http://127.0.0.1:65156</code> &nbsp; <b>Module:</b> security_headers &nbsp; <b>CWE:</b> CWE-1021</p>
+          <pre>no X-Frame-Options and no CSP frame-ancestors</pre>
+          <p><b>Tip:</b> Add frame-ancestors &#x27;none&#x27; or X-Frame-Options: DENY.</p>
+        </div>
+        <div class="card">
+          <h3>#1 [info] Server version disclosed in Server header (1.0)</h3>
+          <p><b>Target:</b> <code>http://127.0.0.1:65156</code> &nbsp; <b>Module:</b> tech_fingerprint &nbsp; <b>CWE:</b> CWE-200</p>
+          <pre>Server: TV-EYE-Lab/1.0 (Python)</pre>
+          <p><b>Tip:</b> Banner disclosure assists attackers; suppress versions.</p>
+        </div>
+        <div class="card">
+          <h3>#10 [info] Possible secret in JavaScript: Internal URL</h3>
+          <p><b>Target:</b> <code>http://127.0.0.1:65156/app.js</code> &nbsp; <b>Module:</b> js_secrets &nbsp; <b>CWE:</b> CWE-200</p>
+          <pre>Match: http://10.0.0.42:8080/internal</pre>
+          <p><b>Tip:</b> Verify key is live and report with minimal redaction.</p>
+        </div>
+<div class="footer">Generated by TV-EYE 1.0.0 (Mr_TV) - authorized testing only.</div>
+</body></html>

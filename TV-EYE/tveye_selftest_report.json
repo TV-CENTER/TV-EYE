@@ -1,0 +1,1152 @@
+{
+  "tool": "TV-EYE 1.0.0 - Author: Mr_TV - Telegram: @Mr_TV_ir - GitHub: https://github.com/TV-CENTER",
+  "generated": "2026-11-12T09:19:42.988987+00:00",
+  "workspace": "C:\\Users\\G.S\\TV-EYE",
+  "options": {
+    "threads": 10,
+    "timeout": 5,
+    "target": "127.0.0.1",
+    "body": "username={USER}&password={PASS}",
+    "users": "admin,tveyeowner,guest",
+    "passwords": "admin,labpass,password123",
+    "success": "Welcome back",
+    "delay": "0.05",
+    "ports": "65156",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.7d0C1fEgM9vJpLqK7rXwZo8yTn3bVcA5uS2hD6mGxQo",
+    "value": "admin123",
+    "domain": "example.com"
+  },
+  "targets": [],
+  "summary": {
+    "critical": 1,
+    "high": 5,
+    "medium": 5,
+    "low": 3,
+    "info": 2
+  },
+  "findings": [
+    {
+      "id": 1,
+      "time": "2026-11-12 09:18:54 UTC",
+      "title": "Server version disclosed in Server header (1.0)",
+      "severity": "info",
+      "target": "http://127.0.0.1:65156",
+      "evidence": "Server: TV-EYE-Lab/1.0 (Python)",
+      "tip": "Banner disclosure assists attackers; suppress versions.",
+      "cwe": "CWE-200",
+      "_module": "tech_fingerprint"
+    },
+    {
+      "id": 2,
+      "time": "2026-11-12 09:18:55 UTC",
+      "title": "Permissive CORS: Access-Control-Allow-Origin: *",
+      "severity": "low",
+      "target": "http://127.0.0.1:65156",
+      "evidence": "ACA-O: *",
+      "tip": "Wildcard CORS on credentialed APIs leaks data.",
+      "cwe": "CWE-942",
+      "_module": "security_headers"
+    },
+    {
+      "id": 3,
+      "time": "2026-11-12 09:18:55 UTC",
+      "title": "Insecure cookie flags (HttpOnly missing, Secure missing, SameSite missing)",
+      "severity": "low",
+      "target": "http://127.0.0.1:65156",
+      "evidence": "Set-Cookie: labsession=abc123",
+      "tip": "Set HttpOnly; Secure; SameSite=Lax on session cookies.",
+      "cwe": "CWE-1004",
+      "_module": "security_headers"
+    },
+    {
+      "id": 4,
+      "time": "2026-11-12 09:18:55 UTC",
+      "title": "Clickjacking possible (no frame protection)",
+      "severity": "low",
+      "target": "http://127.0.0.1:65156",
+      "evidence": "no X-Frame-Options and no CSP frame-ancestors",
+      "tip": "Add frame-ancestors 'none' or X-Frame-Options: DENY.",
+      "cwe": "CWE-1021",
+      "_module": "security_headers"
+    },
+    {
+      "id": 5,
+      "time": "2026-11-12 09:19:10 UTC",
+      "title": "Environment file exposed: /.env",
+      "severity": "high",
+      "target": "http://127.0.0.1:65156/.env",
+      "evidence": "DB_HOST=127.0.0.1\nDB_USER=fakeuser\nDB_PASS=fakepassword123\nAPI_KEY=FAKE-not-a-real-key\n",
+      "tip": "Secrets in .env can leak API keys and DB passwords.",
+      "cwe": "CWE-200",
+      "_module": "sensitive_files"
+    },
+    {
+      "id": 6,
+      "time": "2026-11-12 09:19:10 UTC",
+      "title": "Possible secret in JavaScript: AWS Key",
+      "severity": "high",
+      "target": "http://127.0.0.1:65156/app.js",
+      "evidence": "Match: AKIAIOSFODNN7EXAMPLE",
+      "tip": "Verify key is live and report with minimal redaction.",
+      "cwe": "CWE-798",
+      "_module": "js_secrets"
+    },
+    {
+      "id": 7,
+      "time": "2026-11-12 09:19:10 UTC",
+      "title": "Possible secret in JavaScript: Generic secret",
+      "severity": "medium",
+      "target": "http://127.0.0.1:65156/app.js",
+      "evidence": "Match: AKIAIOSFODNN7EXAMPLE",
+      "tip": "Verify key is live and report with minimal redaction.",
+      "cwe": "CWE-798",
+      "_module": "js_secrets"
+    },
+    {
+      "id": 8,
+      "time": "2026-11-12 09:19:10 UTC",
+      "title": "Possible secret in JavaScript: Generic secret",
+      "severity": "medium",
+      "target": "http://127.0.0.1:65156/app.js",
+      "evidence": "Match: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+      "tip": "Verify key is live and report with minimal redaction.",
+      "cwe": "CWE-798",
+      "_module": "js_secrets"
+    },
+    {
+      "id": 9,
+      "time": "2026-11-12 09:19:10 UTC",
+      "title": "Possible secret in JavaScript: Generic secret",
+      "severity": "medium",
+      "target": "http://127.0.0.1:65156/app.js",
+      "evidence": "Match: SuperSecretLabValue123",
+      "tip": "Verify key is live and report with minimal redaction.",
+      "cwe": "CWE-798",
+      "_module": "js_secrets"
+    },
+    {
+      "id": 10,
+      "time": "2026-11-12 09:19:10 UTC",
+      "title": "Possible secret in JavaScript: Internal URL",
+      "severity": "info",
+      "target": "http://127.0.0.1:65156/app.js",
+      "evidence": "Match: http://10.0.0.42:8080/internal",
+      "tip": "Verify key is live and report with minimal redaction.",
+      "cwe": "CWE-200",
+      "_module": "js_secrets"
+    },
+    {
+      "id": 11,
+      "time": "2026-11-12 09:19:29 UTC",
+      "title": "Possible reflected XSS in parameter 'q'",
+      "severity": "medium",
+      "target": "http://127.0.0.1:65156/search?q=%22%27%3E%3Ctveyealert%3Ealert%281%29%3C%2Ftveyealert%3E",
+      "evidence": "Canary payload(s) reflected raw into the response body.\nParameter: q\nReflected payload examples: <tveyealert>; <svg/onload; </script; <img src=x onerror; href=\"javascript:; <details open ontoggle\nResponse: HTTP 200, 75 bytes",
+      "tip": "Manually verify with a browser and prove execution; check encoding context (attribute/JS/HTML).",
+      "cwe": "CWE-79",
+      "_module": "xss_scan"
+    },
+    {
+      "id": 12,
+      "time": "2026-11-12 09:19:30 UTC",
+      "title": "SQL injection (error-based) in parameter 'id' (MySQL)",
+      "severity": "high",
+      "target": "http://127.0.0.1:65156/item?id=%27",
+      "evidence": "Database error triggered by 6 payload(s).\nParam: id\nPayloads: '; \"; 1 OR 1=1; 1' OR '1'='1; 1) OR 1=1--; 1 UNION SELECT NULL--\nResponse snippet: <html><body>Warning: mysql error: you have an error in your SQL syntax near '''</body></html>",
+      "tip": "Confirm with sqlmap; determine DBMS and enumerate safely.",
+      "cwe": "CWE-89",
+      "_module": "sqli_scan"
+    },
+    {
+      "id": 13,
+      "time": "2026-11-12 09:19:32 UTC",
+      "title": "File inclusion/traversal in parameter 'page'",
+      "severity": "high",
+      "target": "http://127.0.0.1:65156/view?page=..%2F..%2F..%2Fetc%2Fpasswd",
+      "evidence": "Signature-bearing responses for 6 payload(s).\nPayloads: ../../../etc/passwd; ....//....//....//etc/passwd; /etc/passwd; file:///etc/passwd; ../../../windows/win.ini; ..\\..\\..\\windows\\win.ini\nHTTP status: 200",
+      "tip": "Verify manually; try reading known files; check RFI/filter chains.",
+      "cwe": "CWE-98",
+      "_module": "lfi_scan"
+    },
+    {
+      "id": 14,
+      "time": "2026-11-12 09:19:33 UTC",
+      "title": "Template injection (SSTI) in parameter 'name'",
+      "severity": "high",
+      "target": "http://127.0.0.1:65156/template?name=%7B%7B7%2A7%7D%7D",
+      "evidence": "Math probe '{{7*7}}' evaluated to '49' in the response (HTTP 200). Baseline did not contain the result.",
+      "tip": "Confirm engine type (Jinja2/Twig/Freemarker...) and escalate carefully with proof-of-impact.",
+      "cwe": "CWE-1336",
+      "_module": "ssti_scan"
+    },
+    {
+      "id": 15,
+      "time": "2026-11-12 09:19:36 UTC",
+      "title": "GraphQL introspection enabled: http://127.0.0.1:65156/graphql",
+      "severity": "medium",
+      "target": "http://127.0.0.1:65156/graphql",
+      "evidence": "Introspection query returned schema metadata:\n{\"data\": {\"__schema\": {\"queryType\": {\"name\": \"Query\"}}}}",
+      "tip": "Introspection discloses the full API surface; disable in prod.",
+      "cwe": "CWE-200",
+      "_module": "graphql_scan"
+    },
+    {
+      "id": 16,
+      "time": "2026-11-12 09:19:39 UTC",
+      "title": "Valid credentials found: tveyeowner / labpass",
+      "severity": "critical",
+      "target": "http://127.0.0.1:65156/login",
+      "evidence": "Login succeeded (HTTP 200) with tveyeowner:labpass",
+      "tip": "Report per program policy; suggest MFA + lockout.",
+      "cwe": "CWE-521",
+      "_module": "login_brute"
+    }
+  ],
+  "outputs": {
+    "tech_fingerprint": [
+      {
+        "url": "http://127.0.0.1:65156",
+        "status": 200,
+        "tech": [],
+        "versions": [
+          [
+            "server",
+            "TV-EYE-Lab/1.0 (Python)"
+          ]
+        ]
+      }
+    ],
+    "security_headers": [
+      {
+        "url": "http://127.0.0.1:65156",
+        "score": 52,
+        "present": [],
+        "missing": [
+          "strict-transport-security",
+          "content-security-policy",
+          "x-frame-options",
+          "x-content-type-options",
+          "referrer-policy",
+          "permissions-policy",
+          "x-xss-protection"
+        ]
+      }
+    ],
+    "sensitive_files": [
+      {
+        "base": "http://127.0.0.1:65156",
+        "hits": [
+          [
+            "/.env",
+            "env file",
+            "high",
+            200,
+            87
+          ],
+          [
+            "/.env.local",
+            "env file",
+            "high",
+            404,
+            48
+          ],
+          [
+            "/.git/HEAD",
+            "git repo exposed",
+            "high",
+            404,
+            48
+          ],
+          [
+            "/.git/config",
+            "git config",
+            "high",
+            404,
+            48
+          ],
+          [
+            "/.svn/entries",
+            "svn repo exposed",
+            "high",
+            404,
+            48
+          ],
+          [
+            "/.DS_Store",
+            "directory listing artifact",
+            "low",
+            404,
+            48
+          ],
+          [
+            "/backup.zip",
+            "backup archive",
+            "medium",
+            404,
+            48
+          ],
+          [
+            "/backup.tar.gz",
+            "backup archive",
+            "medium",
+            404,
+            48
+          ],
+          [
+            "/site.zip",
+            "backup archive",
+            "medium",
+            404,
+            48
+          ],
+          [
+            "/db.sql",
+            "database dump",
+            "high",
+            404,
+            48
+          ],
+          [
+            "/dump.sql",
+            "database dump",
+            "high",
+            404,
+            48
+          ],
+          [
+            "/robots.txt",
+            "robots file",
+            "info",
+            200,
+            47
+          ],
+          [
+            "/sitemap.xml",
+            "sitemap",
+            "info",
+            404,
+            48
+          ],
+          [
+            "/server-status",
+            "apache status",
+            "medium",
+            404,
+            48
+          ],
+          [
+            "/web.config",
+            "IIS config",
+            "medium",
+            404,
+            48
+          ],
+          [
+            "/crossdomain.xml",
+            "flash policy (legacy)",
+            "low",
+            404,
+            48
+          ],
+          [
+            "/security.txt",
+            "security contact",
+            "info",
+            404,
+            48
+          ],
+          [
+            "/.well-known/security.txt",
+            "security contact",
+            "info",
+            404,
+            48
+          ],
+          [
+            "/actuator/health",
+            "spring actuator",
+            "info",
+            404,
+            48
+          ],
+          [
+            "/actuator/env",
+            "spring actuator env (secrets!)",
+            "high",
+            404,
+            48
+          ],
+          [
+            "/actuator/heapdump",
+            "heap dump download",
+            "critical",
+            404,
+            48
+          ],
+          [
+            "/swagger.json",
+            "API docs",
+            "low",
+            404,
+            48
+          ],
+          [
+            "/swagger-ui.html",
+            "API docs",
+            "info",
+            404,
+            48
+          ],
+          [
+            "/api-docs",
+            "API docs",
+            "info",
+            404,
+            48
+          ],
+          [
+            "/graphql",
+            "GraphQL endpoint",
+            "info",
+            400,
+            39
+          ],
+          [
+            "/wp-config.php.bak",
+            "wp config backup",
+            "high",
+            404,
+            48
+          ],
+          [
+            "/config.php.bak",
+            "config backup",
+            "high",
+            404,
+            48
+          ],
+          [
+            "/composer.lock",
+            "dependency list",
+            "info",
+            404,
+            48
+          ],
+          [
+            "/package.json",
+            "dependency list",
+            "info",
+            404,
+            48
+          ],
+          [
+            "/id_rsa",
+            "private key",
+            "critical",
+            404,
+            48
+          ],
+          [
+            "/.htaccess",
+            "apache config",
+            "low",
+            404,
+            48
+          ],
+          [
+            "/debug/vars",
+            "expvar debug endpoint",
+            "medium",
+            404,
+            48
+          ],
+          [
+            "/trace",
+            "django debug",
+            "medium",
+            404,
+            48
+          ],
+          [
+            "/admin/config",
+            "admin config",
+            "info",
+            404,
+            48
+          ],
+          [
+            "/phpinfo.php",
+            "phpinfo",
+            "medium",
+            404,
+            48
+          ],
+          [
+            "/info.php",
+            "phpinfo",
+            "medium",
+            404,
+            48
+          ],
+          [
+            "/cgi-bin/test-cgi",
+            "cgi test",
+            "low",
+            404,
+            48
+          ],
+          [
+            "/elmah.axd",
+            "error log viewer",
+            "medium",
+            404,
+            48
+          ],
+          [
+            "/.svn/wc.db",
+            "svn metadata",
+            "medium",
+            404,
+            48
+          ]
+        ]
+      }
+    ],
+    "js_secrets": [
+      {
+        "base": "http://127.0.0.1:65156",
+        "hits": [
+          "AWS Key: AKIAIOSFODNN7EXAMPLE",
+          "Generic secret: AKIAIOSFODNN7EXAMPLE",
+          "Generic secret: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+          "Generic secret: SuperSecretLabValue123",
+          "Internal URL: http://10.0.0.42:8080/internal"
+        ]
+      }
+    ],
+    "param_miner": [
+      {
+        "url": "http://127.0.0.1:65156/search?q=1",
+        "interesting_params": [
+          [
+            "debug",
+            404,
+            "status 200->404"
+          ],
+          [
+            "test",
+            404,
+            "status 200->404"
+          ],
+          [
+            "admin",
+            404,
+            "status 200->404"
+          ],
+          [
+            "id",
+            404,
+            "status 200->404"
+          ],
+          [
+            "user",
+            404,
+            "status 200->404"
+          ],
+          [
+            "page",
+            404,
+            "status 200->404"
+          ],
+          [
+            "file",
+            404,
+            "status 200->404"
+          ],
+          [
+            "path",
+            404,
+            "status 200->404"
+          ],
+          [
+            "url",
+            404,
+            "status 200->404"
+          ],
+          [
+            "redirect",
+            404,
+            "status 200->404"
+          ],
+          [
+            "next",
+            404,
+            "status 200->404"
+          ],
+          [
+            "goto",
+            404,
+            "status 200->404"
+          ],
+          [
+            "return",
+            404,
+            "status 200->404"
+          ],
+          [
+            "returnurl",
+            404,
+            "status 200->404"
+          ],
+          [
+            "rurl",
+            404,
+            "status 200->404"
+          ],
+          [
+            "callback",
+            404,
+            "status 200->404"
+          ],
+          [
+            "continue",
+            404,
+            "status 200->404"
+          ],
+          [
+            "dest",
+            404,
+            "status 200->404"
+          ],
+          [
+            "ref",
+            404,
+            "status 200->404"
+          ],
+          [
+            "referer",
+            404,
+            "status 200->404"
+          ],
+          [
+            "lang",
+            404,
+            "status 200->404"
+          ],
+          [
+            "theme",
+            404,
+            "status 200->404"
+          ],
+          [
+            "template",
+            404,
+            "status 200->404"
+          ],
+          [
+            "preview",
+            404,
+            "status 200->404"
+          ],
+          [
+            "view",
+            404,
+            "status 200->404"
+          ],
+          [
+            "edit",
+            404,
+            "status 200->404"
+          ],
+          [
+            "delete",
+            404,
+            "status 200->404"
+          ],
+          [
+            "token",
+            404,
+            "status 200->404"
+          ],
+          [
+            "auth",
+            404,
+            "status 200->404"
+          ],
+          [
+            "apikey",
+            404,
+            "status 200->404"
+          ],
+          [
+            "api_key",
+            404,
+            "status 200->404"
+          ],
+          [
+            "key",
+            404,
+            "status 200->404"
+          ],
+          [
+            "secret",
+            404,
+            "status 200->404"
+          ],
+          [
+            "access_token",
+            404,
+            "status 200->404"
+          ],
+          [
+            "session",
+            404,
+            "status 200->404"
+          ],
+          [
+            "sid",
+            404,
+            "status 200->404"
+          ],
+          [
+            "email",
+            404,
+            "status 200->404"
+          ],
+          [
+            "username",
+            404,
+            "status 200->404"
+          ],
+          [
+            "role",
+            404,
+            "status 200->404"
+          ],
+          [
+            "level",
+            404,
+            "status 200->404"
+          ],
+          [
+            "status",
+            404,
+            "status 200->404"
+          ],
+          [
+            "type",
+            404,
+            "status 200->404"
+          ],
+          [
+            "action",
+            404,
+            "status 200->404"
+          ],
+          [
+            "cmd",
+            404,
+            "status 200->404"
+          ],
+          [
+            "exec",
+            404,
+            "status 200->404"
+          ],
+          [
+            "command",
+            404,
+            "status 200->404"
+          ],
+          [
+            "query",
+            404,
+            "status 200->404"
+          ],
+          [
+            "q",
+            404,
+            "status 200->404"
+          ],
+          [
+            "search",
+            404,
+            "status 200->404"
+          ],
+          [
+            "sort",
+            404,
+            "status 200->404"
+          ],
+          [
+            "order",
+            404,
+            "status 200->404"
+          ],
+          [
+            "limit",
+            404,
+            "status 200->404"
+          ],
+          [
+            "offset",
+            404,
+            "status 200->404"
+          ],
+          [
+            "start",
+            404,
+            "status 200->404"
+          ],
+          [
+            "debug2",
+            404,
+            "status 200->404"
+          ],
+          [
+            "logged_in",
+            404,
+            "status 200->404"
+          ],
+          [
+            "is_admin",
+            404,
+            "status 200->404"
+          ],
+          [
+            "admin_panel",
+            404,
+            "status 200->404"
+          ],
+          [
+            "su",
+            404,
+            "status 200->404"
+          ],
+          [
+            "root",
+            404,
+            "status 200->404"
+          ],
+          [
+            "sudo",
+            404,
+            "status 200->404"
+          ],
+          [
+            "export",
+            404,
+            "status 200->404"
+          ],
+          [
+            "download",
+            404,
+            "status 200->404"
+          ],
+          [
+            "read",
+            404,
+            "status 200->404"
+          ],
+          [
+            "show",
+            404,
+            "status 200->404"
+          ],
+          [
+            "include",
+            404,
+            "status 200->404"
+          ],
+          [
+            "inc",
+            404,
+            "status 200->404"
+          ],
+          [
+            "load",
+            404,
+            "status 200->404"
+          ],
+          [
+            "cat",
+            404,
+            "status 200->404"
+          ],
+          [
+            "src",
+            404,
+            "status 200->404"
+          ],
+          [
+            "doc",
+            404,
+            "status 200->404"
+          ],
+          [
+            "config",
+            404,
+            "status 200->404"
+          ],
+          [
+            "setting",
+            404,
+            "status 200->404"
+          ],
+          [
+            "settings",
+            404,
+            "status 200->404"
+          ],
+          [
+            "options",
+            404,
+            "status 200->404"
+          ],
+          [
+            "opt",
+            404,
+            "status 200->404"
+          ]
+        ]
+      }
+    ],
+    "xss_scan": [
+      {
+        "url": "http://127.0.0.1:65156/search?q=1",
+        "reflects": [
+          [
+            "q",
+            6,
+            200
+          ]
+        ]
+      }
+    ],
+    "sqli_scan": [
+      {
+        "url": "http://127.0.0.1:65156/item?id=3",
+        "findings": [
+          [
+            "id",
+            "error:MySQL",
+            6
+          ]
+        ]
+      }
+    ],
+    "lfi_scan": [
+      {
+        "url": "http://127.0.0.1:65156/view?page=about",
+        "hits": [
+          [
+            "page",
+            6
+          ]
+        ]
+      }
+    ],
+    "ssti_scan": [
+      {
+        "url": "http://127.0.0.1:65156/template?name=x",
+        "hits": [
+          [
+            "name",
+            "{{7*7}}",
+            "49"
+          ]
+        ]
+      }
+    ],
+    "open_redirect": [
+      {
+        "url": "http://127.0.0.1:65156/redirect?next=/",
+        "hits": []
+      }
+    ],
+    "cors_scan": [
+      {
+        "target": "http://127.0.0.1:65156",
+        "results": [
+          {
+            "origin": "https://evil.example.com",
+            "acao": "*",
+            "acac": "",
+            "status": 200
+          },
+          {
+            "origin": "null",
+            "acao": "*",
+            "acac": "",
+            "status": 200
+          },
+          {
+            "origin": "https://127.0.0.1.evil.example.com",
+            "acao": "*",
+            "acac": "",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "graphql_scan": [
+      {
+        "base": "http://127.0.0.1:65156",
+        "live": [
+          [
+            "http://127.0.0.1:65156/graphql",
+            200,
+            "{\"data\":{\"__typename\":\"Query\"}}"
+          ],
+          [
+            "http://127.0.0.1:65156/graphql/console",
+            404,
+            "{\"error\":\"unknown lab path\"}"
+          ],
+          [
+            "http://127.0.0.1:65156/graphiql",
+            404,
+            "{\"error\":\"unknown lab path\"}"
+          ],
+          [
+            "http://127.0.0.1:65156/api/graphql",
+            404,
+            "{\"error\":\"unknown lab path\"}"
+          ],
+          [
+            "http://127.0.0.1:65156/gql",
+            404,
+            "{\"error\":\"unknown lab path\"}"
+          ],
+          [
+            "http://127.0.0.1:65156/query",
+            404,
+            "{\"error\":\"unknown lab path\"}"
+          ],
+          [
+            "http://127.0.0.1:65156/graphql/schema.json",
+            404,
+            "{\"error\":\"unknown lab path\"}"
+          ],
+          [
+            "http://127.0.0.1:65156/api/graphiql",
+            404,
+            "{\"error\":\"unknown lab path\"}"
+          ],
+          [
+            "http://127.0.0.1:65156/v1/graphql",
+            404,
+            "{\"error\":\"unknown lab path\"}"
+          ],
+          [
+            "http://127.0.0.1:65156/v2/graphql",
+            404,
+            "{\"error\":\"unknown lab path\"}"
+          ],
+          [
+            "http://127.0.0.1:65156/graphql/dev",
+            404,
+            "{\"error\":\"unknown lab path\"}"
+          ]
+        ],
+        "introspection": true
+      }
+    ],
+    "login_brute": [
+      {
+        "url": "http://127.0.0.1:65156/login",
+        "attempts": 9,
+        "hits": [
+          [
+            "tveyeowner",
+            "labpass",
+            200
+          ]
+        ]
+      }
+    ],
+    "port_scan": [
+      {
+        "host": "127.0.0.1",
+        "open": [
+          [
+            65156,
+            "unknown",
+            ""
+          ]
+        ]
+      }
+    ],
+    "jwt_audit": [
+      {
+        "header": {
+          "alg": "HS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "sub": "1234567890"
+        },
+        "issues": []
+      }
+    ],
+    "hash_id": [
+      {
+        "md5": "0192023a7bbd73250516f069df18b500",
+        "sha1": "f865b53623b121fd34ee5426c792e5c33af8c227",
+        "sha256": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9"
+      }
+    ],
+    "header_gen": [
+      {
+        "server": "nginx",
+        "config": [
+          "add_header Strict-Transport-Security \"max-age=31536000; includeSubDomains; preload\" always;",
+          "add_header Content-Security-Policy \"default-src 'self'; script-src 'self' 'nonce-{RANDOM}'; style-src 'self'; img-src 'self' data:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'\" always;",
+          "add_header X-Content-Type-Options \"nosniff\" always;",
+          "add_header X-Frame-Options \"DENY\" always;",
+          "add_header Referrer-Policy \"strict-origin-when-cross-origin\" always;",
+          "add_header Permissions-Policy \"camera=(), microphone=(), geolocation=()\" always;",
+          "add_header Set-Cookie \"Path=/; Secure; HttpOnly; SameSite=Lax\";"
+        ]
+      }
+    ],
+    "payload_gen": [
+      {
+        "packs": {
+          "xss": [
+            "<script>alert(1)</script>",
+            "\"><svg/onload=alert(1)>",
+            "<img src=x onerror=alert(1)>",
+            "javascript:alert(1)",
+            "'\"><details/open/ontoggle=alert(1)>"
+          ],
+          "sqli": [
+            "' OR '1'='1",
+            "1 UNION SELECT NULL,NULL--",
+            "1; DROP TABLE users--",
+            "1 AND SLEEP(5)--",
+            "1' AND 1=1-- -"
+          ],
+          "ssti": [
+            "{{7*7}}",
+            "${7*7}",
+            "<%= 7*7 %>",
+            "#{7*7}",
+            "{{constructor.constructor('return process.env')()}}"
+          ],
+          "lfi": [
+            "../../../etc/passwd",
+            "....//....//etc/passwd",
+            "php://filter/convert.base64-encode/resource=index",
+            "file:///etc/passwd"
+          ],
+          "blind": [
+            "<script src=https://example.com></script>",
+            "https://example.com/x",
+            "\"\"><img src=https://example.com/img>"
+          ]
+        }
+      }
+    ]
+  }
+}
